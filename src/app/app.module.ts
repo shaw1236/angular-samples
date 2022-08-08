@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { Routes, RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 
 import { MatDialogModule } from '@angular/material/dialog';
@@ -10,6 +11,9 @@ import { MatTableModule } from '@angular/material/table'
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 
@@ -69,18 +73,34 @@ import { AsyncTestExampleComponent } from './async/async-test-eample';
 import { FormTestExampleComponent } from './form-test/fom-test-example';
 
 // Dialog
-import { DialogAnimationsExample, DialogAnimationsExampleDialog, ConfirmationDialogComponent } from './service/dialog-animations-example';
+import { DialogAnimationsExample, DialogAnimationsExampleDialog, ConfirmationDialogComponent } from './dialog-test/dialog-animations-example';
+
+// Spin
+import { SpinTestComponent } from './spin-test/spin-test.component';
+
+const adminUserRoles = [ 'superadmin', 'admin' ];
+const routes: Routes = [
+  //{ path: '', redirectTo: 'spin', pathMatch: 'full' },
+  { path: 'spin', component: SpinTestComponent, canActivate: [ AuthGuard ], data: { roles: adminUserRoles, debug: true } },
+  //{ path: '**', redirectTo: '', pathMatch: 'full' }, 
+]
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    RouterModule,
     FormsModule, ReactiveFormsModule,
     MatDialogModule,
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatChipsModule
+    MatChipsModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatSnackBarModule,
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })
   ],
   declarations: [
     AppComponent,
@@ -116,7 +136,7 @@ import { DialogAnimationsExample, DialogAnimationsExampleDialog, ConfirmationDia
     ItemOutputComponent,
     AsyncTestExampleComponent,
     FormTestExampleComponent,
-    DialogAnimationsExample, DialogAnimationsExampleDialog, ConfirmationDialogComponent
+    DialogAnimationsExample, DialogAnimationsExampleDialog, ConfirmationDialogComponent, SpinTestComponent
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

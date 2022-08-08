@@ -1,0 +1,27 @@
+<!-- <mat-progress-spinner color="accent" mode="determinate" value="100"></mat-progress-spinner> -->
+<section>
+  <mat-spinner [diameter]="50"></mat-spinner>
+</section>
+<section>
+  <mat-progress-spinner value="50" mode="indeterminate"></mat-progress-spinner>
+</section>
+<section>
+<mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+<br/>
+<mat-progress-bar mode="query"></mat-progress-bar>
+<br/>
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</section>
+<div class="overlay" *ngIf="isLoading | async">
+  <mat-progress-spinner class="spinner" [color]="color" mode="indeterminate" [value]="50">
+  </mat-progress-spinner>
+</div>
+<div class="overlay" *ngIf="isLoading2 | async">
+  <mat-progress-spinner class="spinner" [color]="color" mode="indeterminate">
+  </mat-progress-spinner>
+</div>
+<section>IP: {{ pingData?.ip }}</section>
+<section>
+  <button mat-raised-button (click)="spin()">Async Progress</button>
+  <button mat-raised-button (click)="spin2()">Async Progress 2</button>
+</section>

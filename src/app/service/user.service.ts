@@ -2,7 +2,7 @@
 import { Injectable, HostListener } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { Router } from "@angular/router";
 
 export enum userRole {
@@ -18,8 +18,16 @@ export class UserService {
   constructor(private http: HttpClient, private router: Router) { }
 
   //myurl = this.api + 'users';
-  userRegistration(body: any) {
+  userRegistration(body: any): Observable<any> {
     return this.http.post('/api/users', body);
+  }
+
+  loginUser(body: any): Observable<any> {
+    return this.http.post('/api/users/login', body);
+  }
+
+  ping(): Observable<any> {
+    return this.http.get('/api/tools/ping');
   }
 
   isRunning = false;
@@ -46,7 +54,7 @@ export class UserService {
     }, timeoutAtMilliseconds);
   }
 
-  logoutUser() {
+  logoutUser(): void {
     this.isUserLogged.next(false);
     this.clear();
     setTimeout(() => {
