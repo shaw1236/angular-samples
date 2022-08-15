@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.bigbutton {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 40px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  word-wrap: break-word;
+  border-radius: 20px;
+  font-size: 40px;
+  margin: 8px 4px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<h2 id="demo"></h2>
+
+<button class="bigbutton" onclick="myFunc('Monthly Plan')">Monthly<br/>Plan</button>
+<button class="bigbutton" onclick="myFunc('Annual Plan')">Annual<br/>Plan</button>
+<button class="bigbutton" onclick="myFunc('Coupon Offer')">Coupon<br/>Offer</button>
+<script>
+   function myFunc(which) {
+      document.getElementById("demo").innerHTML = "You chose " + which;
+   }
+</script>
+
+</body>
+</html>

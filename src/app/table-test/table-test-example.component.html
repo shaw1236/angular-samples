@@ -3,26 +3,42 @@
   <h2>Table Sample</h2>
   <h6 style="text-align:center;" appHighlight="yellow">Sample for table, sort, pagination, filter</h6>
   <div>
+    <button mat-button color="primary" class="button" (click)="toggleAllRowsNeedDetailExpanded()" title="{{allRowsNeedDetailExpanded? 'Show' : 'Hide'}} Row &quot;Bios Id&quot;">
+      {{allRowsNeedDetailExpanded? 'Expand' : 'Collapse' }}
+  </button>
+  </div>
+  <div>
     <input matInput (keyup)="filter()" placeholder="Filter" [(ngModel)]="filterValue" />
   </div>
-  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-
+  <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="mat-elevation-z8">
     <!-- Position Column -->
     <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
-        No.
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">No.</th>
+      <!-- <td mat-cell *matCellDef="let element">
+        <mat-icon style="display:inline-block;" (click)="toggleRow(element)">{{element.expanded? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+        <span style="float:left;">{{element.position}}</span> 
+      </td> -->
+      <td mat-cell *matCellDef="let element">
+        <span col="key" (click)="clickId($event)">{{element.position}}</span> 
+      </td>
     </ng-container>
-
+  
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
         Name
       </th>
-      <td mat-cell *matCellDef="let element" (click)="onCheckRow(element)"> {{element.name}} </td>
+      <td mat-cell col="name" *matCellDef="let element" (click)="clickName($event)"> {{element.name}} </td>
     </ng-container>
-
+  
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Status">
+        Status
+      </th>
+      <td mat-cell col="status" *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+  
     <!-- Weight Column -->
     <ng-container matColumnDef="weight">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
@@ -30,18 +46,49 @@
       </th>
       <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
     </ng-container>
-
+  
     <!-- Symbol Column -->
     <ng-container matColumnDef="symbol">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
         Symbol
       </th>
-      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      <td mat-cell col="symbol" *matCellDef="let element"> {{element.symbol}} </td>
     </ng-container>
-
+  
+    <!-- Build Column -->
+    <ng-container matColumnDef="build">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by build">
+        Build
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.build}} </td>
+    </ng-container>
+  
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+        <div class="key-table-element-detail" [@detailExpand]="element.expanded? 'expanded' : 'collapsed'">
+          <table class="detail-table">
+            <tr>
+              <th>Bios Id</th>
+              <th>Name</th> 
+            </tr>
+            <tr>
+              <td style="font-size: 90%;">{{element.biosId}}</td>
+              <td>{{element.name}}</td>
+            </tr>
+          </table>
+          <!-- Bios Id: {{element.biosId}} -->
+        </div>
+      </td>
+    </ng-container>
+  
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="key-table-element-row"
+      [class.key-table-expanded-row]="element.expanded" (click)="toggleRow($event, element)">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="key-table-detail-row"></tr>
   </table>
+
   <mat-paginator [pageSizeOptions]="[5, 10, 20, 100]" [pageSize]="5" (page)="onPaginateChange($event)"
     showFirstLastButtons>
   </mat-paginator>
