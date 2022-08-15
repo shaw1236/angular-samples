@@ -2,6 +2,7 @@ import { OnInit, AfterViewInit, AfterContentInit, AfterContentChecked, Component
 import { Observable } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
+import { FormControl } from '@angular/forms';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -63,23 +64,34 @@ export class TableTestExampleComponent implements AfterViewInit, OnInit, AfterCo
   ];
   
   dataSource!: MatTableDataSource<PeriodicElement>;
+  
   filterValue: string = ''; // filter value binding
+  filterControl: FormControl; // control filter 
 
   allRowsNeedDetailExpanded: boolean = true; // All rows need detail expanded
 
   constructor(private dialog: MatDialog) {
+    this.filterControl = new FormControl('');
+
     console.log("data source: ", this.dataSource);  // undefined
   }
   
   ngOnInit() {
     this.dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
+    // filter: pick up if true, otherwise filter out
     this.dataSource.filterPredicate = (data: any, filter: string): boolean => {
       const item = data as PeriodicElement;
       const re = new RegExp(`^${filter}.*$`, 'i');
       //const re = new RegExp(`^.*${filter}$`, 'i');
-      return re.test(item.name);
+      let result = false;
+      for (const k1 in data) {
+        result = data[k1] && re.test("" + data[k1]) || false;
+        if (result) break;
+      }
+      return result;
     }
 
+    // sort: "data" is sorted on column "sortHeaderId" 
     // _data(data), _renderData
     this.dataSource.sortingDataAccessor = (data: any, sortHeaderId: string): string | number => {
       let result: string | number;
@@ -97,6 +109,7 @@ export class TableTestExampleComponent implements AfterViewInit, OnInit, AfterCo
       }
       return result;
     };
+
     console.log("data source: ", this.dataSource); 
   }
 
@@ -136,10 +149,9 @@ export class TableTestExampleComponent implements AfterViewInit, OnInit, AfterCo
   }
 
   // Filter the input
-  filter() {
-    if (this.filterValue) 
-      this.filterValue = this.filterValue.trim();
-    this.dataSource.filter = this.filterValue;
+  onFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    this.dataSource.filter = filterValue;
   }
 
   clickId(event: any) {

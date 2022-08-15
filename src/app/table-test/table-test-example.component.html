@@ -5,11 +5,15 @@
   <div>
     <button mat-button color="primary" class="button" (click)="toggleAllRowsNeedDetailExpanded()" title="{{allRowsNeedDetailExpanded? 'Show' : 'Hide'}} Row &quot;Bios Id&quot;">
       {{allRowsNeedDetailExpanded? 'Expand' : 'Collapse' }}
-  </button>
+    </button>
+    <!-- Variable binding -->
+    <label style="margin-left: 3em;"><strong>Variable Filter: </strong></label>
+    <input matInput (keyup)="onFilter(filterValue)" style="margin-left:0.5em;" placeholder="Filter" [(ngModel)]="filterValue" title="varible filter"/>
+    <!-- Form Control Binding -->
+    <label style="margin-left: 3em;"><strong>Form Filter: </strong></label>
+    <input matInput (keyup)="onFilter(filterControl.value)" style="margin-left:0.5em;" placeholder="Filter" [formControl]="filterControl" title="form control filter"/>
   </div>
-  <div>
-    <input matInput (keyup)="filter()" placeholder="Filter" [(ngModel)]="filterValue" />
-  </div>
+  <!-- Table display -->
   <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="mat-elevation-z8">
     <!-- Position Column -->
     <ng-container matColumnDef="position">
