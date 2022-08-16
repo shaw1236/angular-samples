@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, Component, ContentChild } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, Component, ContentChild, ContentChildren, QueryList } from '@angular/core';
 
 import { ChildComponent } from './child.component';
 import { LoggerService } from '../service/logger.service';
@@ -9,8 +9,7 @@ import { LoggerService } from '../service/logger.service';
     <div>projected content begins</div>
       <ng-content></ng-content>
     <div>projected content ends</div>
-  `
-   + `
+    
     <p *ngIf="comment" class="comment">
       {{comment}}
     </p>
@@ -22,7 +21,8 @@ export class AfterContentComponent implements AfterContentChecked, AfterContentI
 
   // Query for a CONTENT child of type `ChildComponent`
   @ContentChild(ChildComponent) contentChild!: ChildComponent;
-
+  @ContentChildren(ChildComponent) contentChildren!: QueryList<ChildComponent>;
+  
   constructor(private logger: LoggerService) {
     this.logIt('AfterContent constructor');
   }
@@ -31,6 +31,7 @@ export class AfterContentComponent implements AfterContentChecked, AfterContentI
     // contentChild is set after the content has been initialized
     this.logIt('AfterContentInit');
     this.doSomething();
+    this.contentChildren.last.hero = "Simon";
   }
 
   ngAfterContentChecked() {

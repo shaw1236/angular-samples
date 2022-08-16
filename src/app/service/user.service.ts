@@ -11,7 +11,8 @@ export enum userRole {
   viewer        = 'viewer'
 };
 
-@Injectable()
+//@Injectable()
+@Injectable({ providedIn: 'root' })
 export class UserService {
   isUserLogged: Subject<boolean> = new Subject();
 

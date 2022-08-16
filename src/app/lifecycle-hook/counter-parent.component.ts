@@ -5,17 +5,17 @@ import { LoggerService } from '../service/logger.service';
 @Component({
   selector: 'counter-parent',
   template: `
-  <h2>Counter Spy</h2>
+    <h2>Counter Spy</h2>
 
-  <button type="button" (click)="updateCounter()">Update counter</button>
-  <button type="button" (click)="reset()">Reset Counter</button>
+    <button type="button" (click)="updateCounter()">Update counter</button>
+    <button type="button" (click)="reset()">Reset Counter</button>
 
-  <app-counter [counter]="value"></app-counter>
+    <app-counter [counter]="value"></app-counter>
 
-  <div class="info">
-    <h3>Spy Lifecycle Hook Log</h3>
-    <div *ngFor="let msg of spyLog" class="log">{{msg}}</div>
-  </div>
+    <div class="info">
+      <h3>Spy Lifecycle Hook Log</h3>
+      <div *ngFor="let msg of spyLog" class="log">{{msg}}</div>
+    </div>
   `,
   providers: [LoggerService]
 })

@@ -5,12 +5,12 @@ import { Hero } from '../types/hero';
 @Component({
   selector: 'on-changes',
   template: `
-  <div class="info">
-    <p>{{hero.name}} can {{power}}</p>
+    <div class="info">
+      <p>{{hero.name}} can {{power}}</p>
 
-    <h3>Change Log</h3>
-    <div *ngFor="let chg of changeLog" class="log">{{chg}}</div>
-  </div>
+      <h3>Change Log</h3>
+      <div *ngFor="let chg of changeLog" class="log">{{chg}}</div>
+    </div>
   `
 })
 export class OnChangesComponent implements OnChanges {

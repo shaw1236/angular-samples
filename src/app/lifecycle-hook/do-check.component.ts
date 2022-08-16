@@ -5,12 +5,12 @@ import { Hero } from '../types/hero';
 @Component({
   selector: 'do-check',
   template: `
-  <div class="info">
-    <p>{{hero.name}} can {{power}}</p>
+    <div class="info">
+      <p>{{hero.name}} can {{power}}</p>
 
-    <h3>Change Log</h3>
-    <div *ngFor="let chg of changeLog" class="log">{{chg}}</div>
-  </div>
+      <h3>Change Log</h3>
+      <div *ngFor="let chg of changeLog" class="log">{{chg}}</div>
+    </div>
   `
 })
 export class DoCheckComponent implements DoCheck {

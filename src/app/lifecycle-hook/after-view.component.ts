@@ -9,8 +9,7 @@ import { LoggerService } from '../service/logger.service';
     <div>child view begins</div>
       <app-child-view></app-child-view>
     <div>child view ends</div>
-  `
-   + `
+  
     <p *ngIf="comment" class="comment">
       {{comment}}
     </p>

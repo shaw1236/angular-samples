@@ -17,13 +17,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 
-// Providers
+// Service Providers
 import { AuthGuard } from './service/auth.guard';
-import { UserService } from './service/user.service';
+//import { UserService } from './service/user.service';
 import { HttpHeaderInterceptor } from "./service/http.interceptor";
-import { NotificationService } from "./service/notification.service";
+//import { NotificationService } from "./service/notification.service";
 
-// Declarations
+// Component Declarations
 import { AfterContentParentComponent } from './lifecycle-hook/after-content-parent.component';
 import { AfterContentComponent } from './lifecycle-hook/after-content.component';
 import { ChildComponent } from './lifecycle-hook/child.component';
@@ -139,11 +139,12 @@ const routes: Routes = [
     DialogAnimationsExample, DialogAnimationsExampleDialog, ConfirmationDialogComponent, SpinTestComponent
   ],
   providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: HttpHeaderInterceptor,
-    multi: true,
-  }, NotificationService, UserService, AuthGuard
-],
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpHeaderInterceptor,
+      multi: true,
+    }, 
+    AuthGuard
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

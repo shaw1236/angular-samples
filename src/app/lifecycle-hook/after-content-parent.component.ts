@@ -8,11 +8,12 @@ import { LoggerService } from '../service/logger.service';
   <div class="parent">
     <h2>AfterContent</h2>
 
-    <div *ngIf="show">` +
-      `<after-content>
+    <div *ngIf="show">
+      <after-content>
         <app-child></app-child>
-      </after-content>`
-    + `</div>
+        <app-child></app-child>
+      </after-content>
+    </div>
 
     <div class="info">
       <h3>AfterContent Logs</h3>
