@@ -1,0 +1,26 @@
+table {
+  width: 100%;
+}
+    
+// .button {
+//   background-color: #4CAF50; /* Green */
+//   border: none;
+//   color: white;
+//   padding: 8px 10px;
+//   text-align: center;
+//   text-decoration: none;
+//   border-radius: 8px;
+//   display: inline-block;
+//   font-size: 16px;
+// }
+  
+::ng-deep .mat-sort-header {
+  font-weight: bold;
+  color: blue; /*change color of header*/
+}
+  
+::ng-deep .mat-sort-header-arrow {
+  color: red !important;
+}
+  
+    

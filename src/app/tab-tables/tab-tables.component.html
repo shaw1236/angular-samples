@@ -1,0 +1,29 @@
+<mat-tab-group (selectChange)="tabSelectionChanged($event)">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Simple Table
+    </ng-template>
+    <app-simple-table-example></app-simple-table-example>
+  </mat-tab>
+  
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Table With Footer
+    </ng-template>
+    <app-table-footer-example></app-table-footer-example>
+  </mat-tab>
+  
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Table With Detail
+    </ng-template>
+    <table-sorting-example></table-sorting-example>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Simple PO
+    </ng-template>
+    <app-simple-po-example></app-simple-po-example>
+  </mat-tab>
+</mat-tab-group>

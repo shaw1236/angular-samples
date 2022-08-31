@@ -15,6 +15,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import { MatButtonModule } from '@angular/material/button';;
+import { MatIconModule } from '@angular/material/icon';
+import { MatRippleModule } from '@angular/material/core'
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+
 import { AppComponent } from './app.component';
 
 // Service Providers
@@ -78,6 +87,13 @@ import { DialogAnimationsExample, DialogAnimationsExampleDialog, ConfirmationDia
 // Spin
 import { SpinTestComponent } from './spin-test/spin-test.component';
 
+// tabs
+import { TabTablesComponent } from './tab-tables/tab-tables.component';
+import { TableSortingExampleComponent } from './tab-tables/table-sorting-example/table-sorting-example.component';
+import { TableFooterExampleComponent } from './tab-tables/table-footer-example/table-footer-example.component';
+import { SimpleTableExampleComponent } from './tab-tables/simple-table-example/simple-table-example.component';
+import { SimplePoExampleComponent } from './tab-tables/simple-po-example/simple-po-example.component';
+
 const adminUserRoles = [ 'superadmin', 'admin' ];
 const routes: Routes = [
   //{ path: '', redirectTo: 'spin', pathMatch: 'full' },
@@ -92,6 +108,15 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule,
     FormsModule, ReactiveFormsModule,
+    MatTableModule,
+    MatSortModule, MatPaginatorModule,
+    MatButtonModule, MatIconModule,
+    MatRippleModule,
+    MatExpansionModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
     MatDialogModule,
     MatTableModule,
     MatSortModule,
@@ -136,7 +161,12 @@ const routes: Routes = [
     ItemOutputComponent,
     AsyncTestExampleComponent,
     FormTestExampleComponent,
-    DialogAnimationsExample, DialogAnimationsExampleDialog, ConfirmationDialogComponent, SpinTestComponent
+    DialogAnimationsExample, DialogAnimationsExampleDialog, ConfirmationDialogComponent, SpinTestComponent,
+    TabTablesComponent,
+    TableSortingExampleComponent,
+    TableFooterExampleComponent,
+    SimpleTableExampleComponent,
+    SimplePoExampleComponent
   ],
   providers: [{
       provide: HTTP_INTERCEPTORS,

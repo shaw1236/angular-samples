@@ -1,0 +1,151 @@
+.loginform {
+
+  min-width: 150px;
+  max-width: 300px;
+  width: 100%;
+}
+.Username {
+  width: 100%;
+}
+.Password{
+  width:100%;
+  margin-right: 5px;
+}
+
+.example-card {
+  max-width: 800px;
+  height: 580px;
+  width:100%;
+  margin: auto;
+} 
+
+.card{
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 2em;
+  right: 2em;
+  height: 600px;
+  margin: auto;
+  width: 200px;
+}
+
+.signup{
+  text-align: left;
+  font-size: 13px;
+  margin-right: 95px;
+}
+.error{
+  color: red;
+  min-height: 30px;
+}
+.profile_mat_card{
+  height: 500px;
+  width: 360px;
+  padding: 30px;
+}
+.profile_mat_title{
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+.profile_mat_form{
+  max-width: 100%;
+  margin-bottom: 2em;
+}
+.profile_mat_lable{
+  display: flex;
+  align-items: center;
+  letter-spacing: 1px;
+  font-size: 15px;
+}
+.profile_mat_lable span{
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  background: #fff;
+  color: rgba(0,0,0,.87);
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.profile_mat_button_div{
+  text-align: right;
+  margin-top: 30px;
+}
+.profile_mat_button_div button{
+  color: #ffffff;
+  margin-left: 15px;
+}
+.radiospace {
+  margin-right: 20px;
+}
+
+.logo{
+  vertical-align: middle;
+  margin-left: 10px;
+  max-width: 60px;
+  height: auto;
+}
+.expiretime {
+  display: inline-flex;
+  p {
+    padding-right: 10px;
+  }
+  mat-radio-group {
+    padding-top: 7px;
+  }
+}
+.space {
+  float: right;
+}
+
+
+.error {
+  color: red;
+}
+.table-container {
+  height: 400px;
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+td.mat-column-star {
+  width: 20px;
+  padding-right: 8px;
+}
+
+th.mat-column-position, td.mat-column-position {
+  padding-left: 8px;
+}
+
+.mat-table-sticky-border-elem-right {
+  border-left: 1px solid #e0e0e0;
+}
+
+.mat-table-sticky-border-elem-left {
+  border-right: 1px solid #e0e0e0;
+}
+
+.th-heading {
+  font-weight: bold;
+}
+
+.total-footer-row {
+  font-weight: bold;
+}
+
+mat-card-actions {
+  padding-top: 1em;
+}

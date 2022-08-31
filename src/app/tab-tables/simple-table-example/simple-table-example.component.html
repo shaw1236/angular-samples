@@ -1,0 +1,89 @@
+<div>
+    <h2 style="text-align: center;">Table Testing at {{ now | date : 'EEEE MMM dd - YYYY, hh:mm a' }}</h2>
+    <section style="display:none;" *ngIf="true else ul_test">
+      <ol> 
+        <ng-container *ngFor="let fruit of fruits; let idx = index">
+          <li [attr.data-index]="idx">{{ fruit }} </li>
+        </ng-container>
+      </ol>
+    </section>
+    <ng-template #ul_test>
+      <ul> 
+        <ng-container *ngFor="let fruit of fruits; index as idx">
+          <li [attr.data-index]="idx">{{ fruits[idx] }} </li>
+        </ng-container>
+      </ul>
+    </ng-template>
+    <!-- Table filter -->
+    <!-- <input matInput (keyup)="onFilter(filterValue)" style="margin-left:1.5em;" placeholder="Filter" [(ngModel)]="filterValue" title="varible filter"/>   -->
+    <input matInput (keyup)="onFilter(filterControl.value)" placeholder="Filter" type="text" style="margin-left:3.5em;" [formControl]="filterControl" />
+    <label><em><small>&nbsp;&larr; Table filter</small></em></label>
+    <label style="margin-left: 6em;"><small><em>&darr; Table row, expansion, sorting, click event</em></small></label>
+  </div>
+  
+  <!-- Table contents -->
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" [hidden]="!dataSource?.data?.length">
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">No.</th>
+      <!-- <td mat-cell *matCellDef="let element">
+        <mat-icon style="display:inline-block;" (click)="toggleRow(element)">{{element.expanded? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+        <span style="float:left;">{{element.position}}</span> 
+      </td> -->
+      <td mat-cell *matCellDef="let element">
+        <span col="key" (click)="clickId($event, element)">{{element.position}}</span> 
+      </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+        Name
+      </th>
+      <td mat-cell col="name" *matCellDef="let element" (click)="clickName($event)"> {{element.name}} </td>
+    </ng-container>
+  
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Status">
+        Status
+      </th>
+      <td mat-cell col="status" *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+        Weight
+      </th>
+      <td mat-cell *matCellDef="let element" col="weight"> {{element.weight}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+        Symbol
+      </th>
+      <td mat-cell col="symbol" *matCellDef="let element"> {{element.symbol}} </td>
+    </ng-container>
+  
+    <!-- Build Column -->
+    <ng-container matColumnDef="build">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by build">
+        Build
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.build}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="key-table-element-row">
+    </tr>
+  </table>
+  
+  <!-- Paginzation -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 20, 100]" [pageSize]="5" (page)="onPaginateChange($event)"
+    showFirstLastButtons>
+  </mat-paginator>
+  <div style="float: right;">
+    <label style="margin-right: 20em;"><em><small>&uarr; Table pagination</small></em></label>
+  </div>

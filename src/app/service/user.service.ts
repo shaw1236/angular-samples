@@ -11,6 +11,9 @@ export enum userRole {
   viewer        = 'viewer'
 };
 
+// Angular HTTP Client - Quickstart Guide
+// https://blog.angular-university.io/angular-http/
+
 //@Injectable()
 @Injectable({ providedIn: 'root' })
 export class UserService {

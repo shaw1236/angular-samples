@@ -1,0 +1,57 @@
+table {
+  width: 100%;
+}
+  
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 10px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  display: inline-block;
+  font-size: 16px;
+}
+
+::ng-deep .mat-sort-header {
+  font-weight: bold;
+  color: blue; /*change color of header*/
+}
+
+::ng-deep .mat-sort-header-arrow {
+  color: red !important;
+}
+
+.key-table-detail-row {
+  height: 0;
+}
+  
+.key-table-element-row td {
+  border-bottom-width: 0;
+}
+  
+.key-table-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+  
+.detail-table {
+  //background: #b7b7b773; 
+  text-align: left;
+  //word-wrap: break-word;
+  //word-wrap: normal;
+  white-space: nowrap;
+  width: 2vw; 
+  padding: 0;
+  margin-left: 3em;
+}
+
+::ng-deep .mat-icon{
+  height: 50% !important;
+  width: 50% !important;
+}
+
+.mat-button.mat-primary .mat-button-focus-overlay {
+  background-color: transparent;
+}
